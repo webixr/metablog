@@ -1,0 +1,11 @@
+.page__wrapper {
+    @apply w-full;
+
+    .nav__wrapper {
+        @apply relative z-50;
+    }
+
+    .footer__wrapper {
+        @apply bg-agray border-t;
+    }
+}

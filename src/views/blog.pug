@@ -1,0 +1,67 @@
+extends layouts/master
+include components/header
+include components/card
+
+block vars
+    - var pageTitle = "blog";
+    - var showNav = true;
+    - var showFooter = true;
+    - 
+        var header = {
+            post: {
+                title: "The Impact of Technology on the Workplace: How Technology is Changing",
+                link: "/",
+                img: "images/post-6.jpg",
+                date: "August 20, 2022",
+            },
+            category: {
+                title: "Technology",
+                link: "/",
+            },
+            author: {
+                title: "Jason Francisco",
+                link: "/",
+                img: "images/author.png",
+            },
+        }  
+    - 
+        var post = {
+            post: {
+                title: "The Impact of Technology on the Workplace: How Technology is Changing",
+                link: "/",
+                img: "images/post-2.jpg",
+                date: "August 20, 2022",
+            },
+            category: {
+                title: "Technology",
+                link: "/",
+            },
+            author: {
+                title: "Jason Francisco",
+                link: "/",
+                img: "images/author.png",
+            },
+        }
+    -   
+        var breadcrumbs = [
+                            { title: "home", path: "", active: true },
+                            { title: "blog", path: "", active: false },
+                        ]    
+
+block content 
+    +header-inner-card(pageTitle, header, breadcrumbs)
+    .group__wrapper 
+        .group__container
+            .group__heading 
+                h2.heading__title Latest Post
+            .group__posts 
+                +post-card(post)
+                +post-card(post)
+                +post-card(post)
+                +post-card(post)
+                +post-card(post)
+                +post-card(post)
+            .group__footer 
+                a(href="/" class="footer__button")
+                    p View all post
+
