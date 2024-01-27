@@ -9,6 +9,8 @@ const cssnanoPlugin = require("gulp-cssnano");
 // js plugins
 const bablePlugin = require("gulp-babel");
 const uglifyPlugin = require("gulp-uglify");
+// webp plugins
+const webpPlugin = require("gulp-webp");
 // server
 const liveServerPlugin = require("gulp-live-server");
 const livereloadPlugin = require("gulp-livereload");
@@ -31,6 +33,11 @@ const PATH = {
     src: "./src/assets/js/*.js",
     watch: "./src/assets/js/",
     dist: "dist/js",
+  },
+  img: {
+    src: "./src/assets/images/*.*",
+    watch: "./src/assets/images/",
+    dist: "dist/images",
   },
 };
 
@@ -69,6 +76,14 @@ function js() {
     .pipe(gulp.dest(PATH.js.dist))
     .pipe(livereloadPlugin());
 }
+// image function
+function img() {
+  return gulp
+    .src(PATH.img.src)
+    .pipe(webpPlugin())
+    .pipe(gulp.dest(PATH.img.dist))
+    .pipe(livereloadPlugin());
+}
 // server function
 function server() {
   let server = liveServerPlugin.static(PATH.html.dist);
@@ -81,9 +96,11 @@ function watch() {
   gulp.watch(PATH.html.watch, html);
   gulp.watch(PATH.css.watch, css);
   gulp.watch(PATH.js.watch, js);
+  gulp.watch(PATH.img.watch, img);
 }
 exports.html = html;
 exports.css = css;
 exports.js = js;
+exports.img = img;
 exports.server = server;
 exports.watch = watch;
